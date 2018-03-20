@@ -4,16 +4,37 @@ import datetime
 import matplotlib.pyplot as plt
 
 # Algorithms
+def non_duplicate_print(eqs):
+    tmp1 = []
+    tmp2 = []
+    for eq in eqs:
+        #print("eq:",eq,"tmp:",tmp)
+        #print(np.any(eq in tmp))
+        #print(eq in tmp)
+        # print(tmp1,tmp2)
+        if len(tmp1) == 0 and len(tmp2) == 0:
+            tmp1.append(eq[0])
+            tmp2.append(eq[1])
+            print(eq)
+            flag = False
+        for i in range(len(tmp1)):
+            if np.all(eq[0] == tmp1[i]):
+                if np.all(eq[1] == tmp2[i]):
+                    flag = True
+        if flag is False:
+            tmp1.append(eq[0])
+            tmp2.append(eq[1])
+            print(eq)
+
 def find_nash_support_enum(utilA , utilB):
     random_game = nash.Game(utilA, utilB)
-    for eq in random_game.support_enumeration():
-        print(eq)
-
+    eqs = random_game.support_enumeration()
+    non_duplicate_print(eqs)
 def find_nash_lemke_howson(utilA , utilB):
     random_game = nash.Game(utilA, utilB)
     random_game.lemke_howson(initial_dropped_label=0)
-    for eq in random_game.lemke_howson_enumeration():
-        print(eq)
+    eqs = random_game.lemke_howson_enumeration()
+    non_duplicate_print(eqs)
 def find_nash_vertex_enum(utilA , utilB):
     random_game = nash.Game(utilA, utilB)
     for eq in random_game.vertex_enumeration():
@@ -43,9 +64,9 @@ def gen_single_game(m, n):
     a, b = generate_game(m=m, n=n)
     t1 = datetime.datetime.now()
     print("Support Enumeration")
-   # find_nash_support_enum(a, b)
+    find_nash_support_enum(a, b)
     print("Lemke Howson")
-   # find_nash_lemke_howson(a, b)
+    find_nash_lemke_howson(a, b)
     print("Vertex Enumeration")
     find_nash_vertex_enum(a, b)
     t2 = datetime.datetime.now()
@@ -104,9 +125,9 @@ def gen_multi_games(m, n):
 
 # main -> find_nash -> random_game.support_enumeration()
 # loop symmetric games from (2,2) to (10,10) actions
-gen_multi_games(12, 12)
+#gen_multi_games(12, 12)
 # single game test
-#gen_single_game(3, 3)
+gen_single_game(3, 3)
 
 
 
