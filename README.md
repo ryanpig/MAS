@@ -1,3 +1,6 @@
+Goal
+- Analyze different approaches to find Nash-Equilibrium in a given m x n game size.
+
 
 Based on the Nashpy package, which already implmented three kinds algorithms to find Nash Eqs.
 - Nashpy:https://github.com/drvinceknight/Nashpy
@@ -9,5 +12,5 @@ Added feature function.
 - Generate steps distribution of LH by a given size of game. 
 
 Note:
--After installing Nashpy package, the lemke_howson.py in the Nashpy library has to be replaced by the local lemke_howson.py.
+- After installing Nashpy package, the lemke_howson.py in the Nashpy library has to be replaced by the local lemke_howson.py.
 
